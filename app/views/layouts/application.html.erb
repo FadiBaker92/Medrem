@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rails Template</title>
+    <title>MedRem</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,9 +14,12 @@
 
   <body>
       <%= render partial: "shared/navbar" %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <%= yield %>
+      
+      <div class="container mt-3 landing_page">
+        <%= render partial: "shared/flash_messages"%>
+        <%= yield %>
+      </div>
+
   </body>
   <%= render partial: "shared/footer" %>
 </html>
