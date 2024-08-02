@@ -1,5 +1,5 @@
 .landing_page {
-  height: 70vh;
+max-height: fit-content;
 }
 
 .landing_page_title{
