@@ -4,14 +4,14 @@
 <div id="medications">
   <% @medications.each do |medication| %>
     <div class="row">
-      <div class="col-sm-6 mb-3 mb-sm-0">
-        <div class="card">
+      <div class="col-sm-6 mb-4 mb-sm-0 mt-4">
+        <div class="card" style="width: 20rem;">
           <div class="card-body">
             <h5 class="card-title"> <%= medication.name%> </h5>
             <p class="card-text"><%= medication.expiration_date%> </p>
             <p class="card-text"><%= medication.dosage%> </p>
             <p class="card-text"><%= medication.description%> </p>
-            <a href="/medications/<%= medication.id%>" class="btn btn-primary">Show this medication</a>
+            <a href="/medications/<%= medication.id%>" class="btn btn-dark">Show this medication</a>
           </div>
         </div>
       </div>
