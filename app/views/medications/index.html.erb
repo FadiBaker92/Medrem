@@ -1,11 +1,11 @@
 <h1>Medications</h1>
-<%= link_to "New medication", new_medication_path %>
+<%= button_to "+ Add New Medication", new_medication_path , method: :get %>
 
 <div id="medications">
   <% @medications.each do |medication| %>
     <div class="row">
       <div class="col-sm-6 mb-4 mb-sm-0 mt-4">
-        <div class="card" style="width: 20rem;">
+        <div class="card" style="width: 30rem;">
           <div class="card-body">
             <h5 class="card-title"> <%= medication.name%> </h5>
             <p class="card-text"><%= medication.expiration_date%> </p>
