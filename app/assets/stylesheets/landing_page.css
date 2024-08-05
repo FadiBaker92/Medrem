@@ -1,11 +1,22 @@
-.landing_page {
-max-height: fit-content;
-}
-
 .landing_page_title{
   font-size: 100px;
 }
 
 .landing_page_text {
-  font-size: 70px;
+  font-size: 40px;
 }
+
+  /* Additional CSS to ensure footer stays at the bottom */
+   html, body {
+    height: 100%;
+  }
+
+  #page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  #content-wrap {
+    flex: 1;
+  }
