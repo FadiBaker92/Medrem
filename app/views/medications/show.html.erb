@@ -1,8 +1,9 @@
 <%= render @medication %>
 
 <div>
-  <%= link_to "Edit this medication", edit_medication_path(@medication) %> |
-  <%= link_to "Back to medications", medications_path %>
-
-  <%= button_to "Destroy this medication", @medication, method: :delete %>
+  <%= link_to "Edit this medication", edit_medication_path(@medication) %>
+  <%= button_to "Delete this medication", @medication, method: :delete %>
+</div>
+<div>
+    <%= link_to "Back to medications", medications_path %>
 </div>
