@@ -13,13 +13,16 @@
   </head>
 
   <body>
-      <%= render partial: "shared/navbar" %>
-      
-      <div class="container mt-5 landing_page">
-        <%= render partial: "shared/flash_messages"%>
-        <%= yield %>
-      </div>
 
+    <%= render partial: "shared/navbar" %>
+      <div id="page-container">
+        <div id="content-wrap">
+          <div class="container mt-3 ">
+            <%= render partial: "shared/flash_messages"%>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    <%= render partial: "shared/footer" %>
   </body>
-  <%= render partial: "shared/footer" %>
 </html>
