@@ -2,6 +2,12 @@
   font-size: 100px;
   color:  #71C4A2;
 }
+.radio-canada-big {
+  font-family: "Radio Canada Big", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
 
 .landing_page_text {
   font-size: 40px;
@@ -32,20 +38,35 @@
 
 
   .how-to-use .card-header {
-    background-color: #A6C0B6;
+    background-color: #598272 ;
     color: #fff;
     font-size: 40px;
     text-align: center;
   }
 
   .how-to-use .card-body {
-    margin-top: 30px;
     height: 25vh;
     text-align: center;
     font-size: 20px;
+    background-color: #A6C0B6 ;
+    color: white
   }
 
   .color_for_nav{
     background-color: #598272 ;
     color: #FFFFFF;
   }
+
+  .quicksand{
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  .card-body h5{
+    font-size: x-large;
+    color: black;
+    margin-bottom: 30px;
+  }
+  
