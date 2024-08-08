@@ -10,4 +10,5 @@
 #  prescription_id :integer
 #
 class Reminder < ApplicationRecord
+  belongs_to :prescription, required: true, class_name: "Prescription", foreign_key: "prescription_id"
 end
