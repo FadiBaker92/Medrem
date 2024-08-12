@@ -9,7 +9,7 @@
           <div class="card-body quicksand">
             <h5 class="card-title"> <strong> <%= medication.name%> </strong> </h5>
             <p class="card-text"><%= medication.description%> </p>
-            <a href="/medications/<%= medication.id%>" class="btn btn-dark custom_button_color">Show This Medication</a>
+            <%= link_to 'Show This Medication', medication_path(medication), method: :get, class: "btn btn-dark custom_button_color"  %>
           </div>
         </div>
       </div>

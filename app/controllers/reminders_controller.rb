@@ -1,9 +1,10 @@
 class RemindersController < ApplicationController
-  before_action :set_reminder, only: %i[ show edit update destroy ]
+  before_action :set_medication, only: %i[ show edit update destroy ]
 
   # GET /reminders or /reminders.json
   def index
     @reminders = Reminder.all
+    
   end
 
   # GET /reminders/1 or /reminders/1.json
@@ -21,11 +22,12 @@ class RemindersController < ApplicationController
 
   # POST /reminders or /reminders.json
   def create
-    @reminder = Reminder.new(reminder_params)
+    @prescription = @medication.prescriptions.first
+    @reminder = @prescription.reminders.build(reminder_params)
 
     respond_to do |format|
       if @reminder.save
-        format.html { redirect_to reminder_url(@reminder), notice: "Reminder was successfully created." }
+        format.html { redirect_to @medication, notice: "Reminder was successfully created." }
         format.json { render :show, status: :created, location: @reminder }
       else
         format.html { render :new, status: :unprocessable_entity }
