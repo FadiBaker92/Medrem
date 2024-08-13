@@ -23,6 +23,6 @@
   
   <div>
     <%= form.submit 'Create Reminder', class: 'btn btn-primary' %>
-    <%= link_to 'Back to Medication', medication_path(@medication), class: 'btn btn-secondary' %>
+    <%= link_to 'Back to Medication', medication_path(@medication.id), class: 'btn btn-secondary' %>
   </div>
 <% end %>

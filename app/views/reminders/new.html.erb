@@ -9,6 +9,10 @@
     <%= form.datetime_local_field :sent_at, class: 'form-control' %>
   </div>
 
-  <%= form.submit 'Create Reminder', class: 'btn btn-primary' %>
-  <%= link_to 'Back to Medication', medication_path(@medication.first.id), class: 'btn btn-secondary' %>
+  <div class="form-group">
+    <%= form.hidden_field :prescription_id, value:@prescription.id, class: 'form-control' %>
+  </div>
+
+  <%= form.submit 'Create Reminder' , class: 'btn btn-primary' %>
+  <%= link_to 'Back to Medication', medication_path(@medication.id), class: 'btn btn-secondary' %>
 <% end %>

@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :medications do
     resources :reminders, only: [:new, :create]
   end
+
   
 end
