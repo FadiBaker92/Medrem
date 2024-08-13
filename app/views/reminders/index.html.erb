@@ -1,12 +1,8 @@
-<h1>Reminders</h1>
-
 <div id="reminders">
-  <% @reminders.each do |reminder| %>
-    <%= render reminder %>
-    <p>
-      <%= link_to "Show this reminder", reminder %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New reminder", new_reminder_path %>
+  <h1>All Reminders</h1>
+
+  <%= month_calendar events: @reminders, attribute: :sent_at do |reminder| %>
+  <% end %>
+
+</div>

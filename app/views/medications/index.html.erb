@@ -1,5 +1,5 @@
 <h1 class="quicksand">Medications</h1>
-<%= button_to  "+ Add New Medication", new_medication_path , method: :get, class: "btn btn-dark custom_button_color quicksand" %>
+<%= link_to  "+ Add New Medication", new_medication_path , method: :get, class: "btn btn-dark custom_button_color quicksand" %>
 
 <div id="medications">
   <div class="row">
@@ -8,10 +8,8 @@
         <div class="card" style="width: 30rem;">
           <div class="card-body quicksand">
             <h5 class="card-title"> <strong> <%= medication.name%> </strong> </h5>
-            <p class="card-text"><%= medication.expiration_date%> </p>
-            <p class="card-text"><%= medication.dosage%> </p>
             <p class="card-text"><%= medication.description%> </p>
-            <a href="/medications/<%= medication.id%>" class="btn btn-dark custom_button_color">Show This Medication</a>
+            <%= link_to 'Show This Medication', medication_path(medication), method: :get, class: "btn btn-dark custom_button_color"  %>
           </div>
         </div>
       </div>

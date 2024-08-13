@@ -1,5 +1,14 @@
 <%= render @medication %>
 
+<h2>Prescriptions</h2>
+  <ul>
+    <% @medication.prescriptions.each do |prescription| %>
+      <li>
+        <%= prescription.description %> (Dosage: <%= prescription.dosage %>, Expires on <%= prescription.expiration_date %>)
+        <%= link_to 'Set Reminder', new_medication_reminder_path(@medication), class: 'btn btn-primary' %>
+      </li>
+    <% end %>
+  </ul>
 <div>
   <%= button_to "Edit This Medication", edit_medication_path(@medication), method: :get %>
   <%= button_to "Delete This Medication", @medication, method: :delete %>

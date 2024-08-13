@@ -8,6 +8,7 @@ class MedicationsController < ApplicationController
 
   # GET /medications/1 or /medications/1.json
   def show
+    @medication = Medication.find(params[:id])
   end
 
   # GET /medications/new
@@ -22,9 +23,16 @@ class MedicationsController < ApplicationController
   # POST /medications or /medications.json
   def create
     @medication = Medication.new(medication_params)
-
+    
     respond_to do |format|
       if @medication.save
+        Prescription.create(
+          description: "Initial Prescription for #{@medication.name}",
+          dosage: params[:medication][:dosage],
+          expiration_date: params[:medication][:expiration_date],
+          user_id: current_user.id,
+          medication_id: @medication.id
+        )
         format.html { redirect_to medication_url(@medication), notice: "Medication was successfully created." }
         format.json { render :show, status: :created, location: @medication }
       else
@@ -65,6 +73,10 @@ class MedicationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def medication_params
-      params.require(:medication).permit(:name, :expiration_date, :dosage, :description)
+      params.require(:medication).permit(:name, :description)
+
     end
+
+
+
 end

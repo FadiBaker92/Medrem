@@ -8,4 +8,9 @@ Rails.application.routes.draw do
 
   # get "/your_first_screen" => "pages#first"
   
+  resources :medications do
+    resources :reminders, only: [:new, :create]
+  end
+
+  
 end

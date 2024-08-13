@@ -4,6 +4,7 @@ class RemindersController < ApplicationController
   # GET /reminders or /reminders.json
   def index
     @reminders = Reminder.all
+    
   end
 
   # GET /reminders/1 or /reminders/1.json
@@ -12,20 +13,26 @@ class RemindersController < ApplicationController
 
   # GET /reminders/new
   def new
+    @medication = Medication.where(id: params[:medication_id]).first
+    @prescription = @medication.prescriptions.first
     @reminder = Reminder.new
   end
 
   # GET /reminders/1/edit
   def edit
+    @prescription = @reminder.prescription
+    @medication = @prescription.medication
   end
 
   # POST /reminders or /reminders.json
   def create
-    @reminder = Reminder.new(reminder_params)
+    id = params[:reminder][:prescription_id].to_i
+    @prescription = Prescription.find(id) 
+    @reminder = @prescription.reminders.build(reminder_params)
 
     respond_to do |format|
       if @reminder.save
-        format.html { redirect_to reminder_url(@reminder), notice: "Reminder was successfully created." }
+        format.html { redirect_to @reminder, notice: "Reminder was successfully created." }
         format.json { render :show, status: :created, location: @reminder }
       else
         format.html { render :new, status: :unprocessable_entity }
