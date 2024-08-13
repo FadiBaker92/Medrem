@@ -20,6 +20,8 @@ class RemindersController < ApplicationController
 
   # GET /reminders/1/edit
   def edit
+    @prescription = @reminder.prescription
+    @medication = @prescription.medication
   end
 
   # POST /reminders or /reminders.json
