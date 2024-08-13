@@ -1,5 +1,5 @@
 class RemindersController < ApplicationController
-  before_action :set_medication, only: %i[ show edit update destroy ]
+  before_action :set_reminder, only: %i[ show edit update destroy ]
 
   # GET /reminders or /reminders.json
   def index
@@ -13,6 +13,7 @@ class RemindersController < ApplicationController
 
   # GET /reminders/new
   def new
+    @medication = Medication.where(id: params[:medication_id])    
     @reminder = Reminder.new
   end
 
