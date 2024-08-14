@@ -1,16 +1,35 @@
-<%= render @medication %>
+<div class="container mt-5">
+  <div class="card shadow-sm" style="width: 25rem;">
+    <div class="card-header text-white d-flex justify-content-between custom_button_color">
+      <h3 class="card-title mb-0"><%= @medication.name %></h3>
+      <div>
+        <%= link_to edit_medication_path(@medication), class: 'btn btn-warning btn-sm' do %>
+          <i class="bi bi-pencil-square"></i>
+        <% end %>
 
-<% @medication.prescriptions.each do |prescription| %>
-    <div> <strong>Dosage:</strong> <%= prescription.dosage %> </div>
-    <div> <strong>Expires on:</strong> <%= prescription.expiration_date %> </div>
-    <div> <%= link_to 'Set a Reminder', new_medication_reminder_path(@medication), class: 'btn btn-dark custom_button_color' %> </div>
-<% end %>
-
-<div>
-  <%= link_to "Edit This Medication", edit_medication_path(@medication), method: :get , class: 'btn btn-dark custom_button_color'%>
-  <%= link_to "Delete This Medication", @medication, method: :delete , class: 'btn btn-dark custom_button_color'%>
-</div>
-
-<div>
-    <%= link_to "Back To Medications", medications_path %>
+        <%= link_to @medication, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' do %>
+          <i class="bi bi-trash"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-body">
+      <% if @medication.prescriptions.any? %>
+        <h4 class="card-subtitle mb-3">Prescription</h4>
+        <% @medication.prescriptions.each do |prescription| %>
+          <div class="mb-3">
+            <div class="mb-2"><strong>Dosage:</strong> <%= prescription.dosage %></div>
+            <div class="mb-2"><strong>Expires on:</strong> <%= prescription.expiration_date.strftime("%B %d, %Y") %></div>
+            <div><%= link_to 'Set a Reminder', new_medication_reminder_path(@medication), class: 'btn btn-dark btn-bg custom_button_color' %></div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-muted">No prescriptions available for this medication.</p>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      <%= link_to medications_path, class: 'btn btn-secondary btn-sm' do %>
+        <i class="bi bi-arrow-left"></i>
+      <% end %>
+    </div>
+  </div>
 </div>
