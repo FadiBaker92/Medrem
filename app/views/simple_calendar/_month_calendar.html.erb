@@ -1,11 +1,14 @@
 <div class="simple-calendar">
-  <div class="calendar-heading">
-    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+  <div class="calendar-heading d-flex">
+    <h4>
+      <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title fw-bold"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %>
+      </time>
+    </h4>
 
-    <nav>
-      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view %>
-      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view %>
-      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view %>
+    <nav class="ms-auto mb-3">
+      <%= link_to t('simple_calendar.previous', default: 'Previous'), calendar.url_for_previous_view , class:'btn btn-dark custom_button_color'%>
+      <%= link_to t('simple_calendar.today', default: 'Today'), calendar.url_for_today_view , class: 'btn btn-dark custom_button_color' %>
+      <%= link_to t('simple_calendar.next', default: 'Next'), calendar.url_for_next_view, class: 'btn btn-dark custom_button_color' %>
     </nav>
   </div>
 

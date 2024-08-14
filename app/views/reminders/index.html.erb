@@ -3,9 +3,11 @@
 
   <%= month_calendar events: @reminders, attribute: :sent_at do |date, reminders| %>
     <div class="calendar-day">
+      <%= date.day %>
       <% reminders.each do |reminder| %>
-        <div class="event bg-primary text-white p-2 rounded mb-2">
+        <div class="event bg-success text-white p-2 rounded mb-2">
           <%= link_to reminder.message, reminder_path(reminder), class: 'text-white' %><br>
+           
           <small><%= reminder.sent_at.strftime("%I:%M %p") %></small>
         </div>
       <% end %>
