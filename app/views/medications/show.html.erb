@@ -1,18 +1,16 @@
 <%= render @medication %>
 
-<h2>Prescriptions</h2>
-  <ul>
-    <% @medication.prescriptions.each do |prescription| %>
-      <li>
-        <%= prescription.description %> (Dosage: <%= prescription.dosage %>, Expires on <%= prescription.expiration_date %>)
-        <%= link_to 'Set Reminder', new_medication_reminder_path(@medication), class: 'btn btn-primary' %>
-      </li>
-    <% end %>
-  </ul>
+<% @medication.prescriptions.each do |prescription| %>
+    <div> <strong>Dosage:</strong> <%= prescription.dosage %> </div>
+    <div> <strong>Expires on:</strong> <%= prescription.expiration_date %> </div>
+    <div> <%= link_to 'Set a Reminder', new_medication_reminder_path(@medication), class: 'btn btn-dark custom_button_color' %> </div>
+<% end %>
+
 <div>
-  <%= button_to "Edit This Medication", edit_medication_path(@medication), method: :get %>
-  <%= button_to "Delete This Medication", @medication, method: :delete %>
+  <%= link_to "Edit This Medication", edit_medication_path(@medication), method: :get , class: 'btn btn-dark custom_button_color'%>
+  <%= link_to "Delete This Medication", @medication, method: :delete , class: 'btn btn-dark custom_button_color'%>
 </div>
+
 <div>
     <%= link_to "Back To Medications", medications_path %>
 </div>

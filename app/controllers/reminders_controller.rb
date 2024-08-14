@@ -9,6 +9,8 @@ class RemindersController < ApplicationController
 
   # GET /reminders/1 or /reminders/1.json
   def show
+    @prescription = @reminder.prescription
+    @medication = @prescription.medication
   end
 
   # GET /reminders/new

@@ -1,12 +1,12 @@
-<h1 class="quicksand">Medications</h1>
-<%= link_to  "+ Add New Medication", new_medication_path , method: :get, class: "btn btn-dark custom_button_color quicksand" %>
-
 <div id="medications">
+  <h1>Medications</h1>
+  <%= link_to  "+ Add New Medication", new_medication_path , method: :get, class: "btn btn-dark custom_button_color" %> 
+
   <div class="row">
     <% @medications.each do |medication| %>
       <div class="col-sm-6 mb-4 mb-sm-0 mt-4">
         <div class="card" style="width: 30rem;">
-          <div class="card-body quicksand">
+          <div class="card-body">
             <h5 class="card-title"> <strong> <%= medication.name%> </strong> </h5>
             <p class="card-text"><%= medication.description%> </p>
             <%= link_to 'Show This Medication', medication_path(medication), method: :get, class: "btn btn-dark custom_button_color"  %>

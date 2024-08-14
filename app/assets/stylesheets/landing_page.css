@@ -1,3 +1,10 @@
+*{
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
 .landing_page_title{
   font-size: 100px;
   color:  #71C4A2;
@@ -16,6 +23,7 @@
 
 
   /* Additional CSS to ensure footer stays at the bottom */
+
    html, body {
     height: 100%;
   }
@@ -55,13 +63,6 @@
   .color_for_nav{
     background-color: #598272 ;
     color: #FFFFFF;
-  }
-
-  .quicksand{
-    font-family: "Quicksand", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 500;
-    font-style: normal;
   }
 
   .card-body h5{

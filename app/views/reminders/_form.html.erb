@@ -26,8 +26,7 @@
     <%= form.text_field :message %>
   </div>
   
-  <div>
-    <%= form.submit 'Create Reminder', class: 'btn btn-primary' %>
-    <%= link_to 'Back to Medication', medication_path(medication.id), class: 'btn btn-secondary' %>
+  <div class="mt-2">
+    <%= form.submit reminder.new_record? ? 'Create Reminder' : "Update Reminder", class: 'btn btn-dark custom_button_color' %>
   </div>
 <% end %>

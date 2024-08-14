@@ -2,8 +2,8 @@
 <%= render @reminder %>
 
 <div>
-  <%= link_to "Edit this reminder", edit_reminder_path(@reminder) %> |
-  <%= link_to "Back to reminders", reminders_path %>
-
-  <%= button_to "Destroy this reminder", @reminder, method: :delete %>
+  <%= link_to "Edit This Reminder", edit_reminder_path(@reminder) %> |
+  <%= link_to "Delete This Reminder", @reminder, method: :delete %>
 </div>
+
+<%= link_to "Back To Medication", medication_path(@medication.id) %>
