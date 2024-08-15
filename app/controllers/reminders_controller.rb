@@ -1,22 +1,26 @@
 class RemindersController < ApplicationController
-  before_action :set_reminder, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :set_reminder, only: %i[show edit update destroy]
 
   # GET /reminders or /reminders.json
   def index
-    @reminders = Reminder.all
-    
+    @reminders = Reminder.joins(:prescription).where(prescriptions: { user_id: current_user.id })
   end
 
   # GET /reminders/1 or /reminders/1.json
   def show
     @prescription = @reminder.prescription
     @medication = @prescription.medication
+
+    unless @prescription.user_id == current_user.id
+      redirect_to reminders_path, alert: "You are not authorized to view this reminder."
+    end
   end
 
   # GET /reminders/new
   def new
-    @medication = Medication.where(id: params[:medication_id]).first
-    @prescription = @medication.prescriptions.first
+    @medication = Medication.find_by(id: params[:medication_id])
+    @prescription = @medication.prescriptions.find_by(user_id: current_user.id)
     @reminder = Reminder.new
   end
 
@@ -28,8 +32,7 @@ class RemindersController < ApplicationController
 
   # POST /reminders or /reminders.json
   def create
-    id = params[:reminder][:prescription_id].to_i
-    @prescription = Prescription.find(id) 
+    @prescription = current_user.prescriptions.find(params[:reminder][:prescription_id])
     @reminder = @prescription.reminders.build(reminder_params)
 
     respond_to do |format|
@@ -67,12 +70,16 @@ class RemindersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_reminder
       @reminder = Reminder.find(params[:id])
+      @prescription = @reminder.prescription
+
+      unless @prescription.user_id == current_user.id
+        redirect_to reminders_path, alert: "You are not authorized to perform this action."
+      end
     end
 
-    # Only allow a list of trusted parameters through.
     def reminder_params
       params.require(:reminder).permit(:sent_at, :message, :prescription_id)
     end
