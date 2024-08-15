@@ -1,14 +1,17 @@
 class MedicationsController < ApplicationController
-  before_action :set_medication, only: %i[ show edit update destroy ]
+  before_action :set_medication, only: %i[show edit update destroy]
+  before_action :authenticate_user!, only: %i[index show edit update destroy]
 
   # GET /medications or /medications.json
   def index
-    @medications = Medication.all
+    @medications = current_user.prescriptions.includes(:medication).map(&:medication)
   end
 
   # GET /medications/1 or /medications/1.json
   def show
-    @medication = Medication.find(params[:id])
+    unless @medication.prescriptions.where(user_id: current_user.id).exists?
+      redirect_to medications_path, alert: "You are not authorized to view this medication."
+    end
   end
 
   # GET /medications/new
@@ -18,6 +21,9 @@ class MedicationsController < ApplicationController
 
   # GET /medications/1/edit
   def edit
+    unless @medication.prescriptions.where(user_id: current_user.id).exists?
+      redirect_to medications_path, alert: "You are not authorized to edit this medication."
+    end
   end
 
   # POST /medications or /medications.json
@@ -66,17 +72,17 @@ class MedicationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_medication
-      @medication = Medication.find(params[:id])
+
+  def set_medication
+    @medication = Medication.find(params[:id])
+
+    unless @medication.prescriptions.where(user_id: current_user.id).exists?
+      redirect_to medications_path, alert: "You are not authorized to perform this action."
     end
+  end
 
-    # Only allow a list of trusted parameters through.
-    def medication_params
-      params.require(:medication).permit(:name, :description)
-
-    end
-
-
-
+  # Only allow a list of trusted parameters through.
+  def medication_params
+    params.require(:medication).permit(:name, :description)
+  end
 end
