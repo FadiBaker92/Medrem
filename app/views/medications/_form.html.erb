@@ -1,37 +1,89 @@
-<%= form_with(model: medication) do |form| %>
-  <% if medication.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(medication.errors.count, "error") %> prohibited this medication from being saved:</h2>
+<%#= form_with(model: medication) do |form| %>
+  <%# if medication.errors.any? %>
+<!--    <div style="color: red">
+      <h2><%#= pluralize(medication.errors.count, "error") %> prohibited this medication from being saved:</h2>
 
       <ul>
-        <% medication.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <%# medication.errors.each do |error| %>-->
+<!--          <li><%#= error.full_message %></li>-->
+        <%# end %>
+<!--      </ul>
     </div>
-  <% end %>
+  <%# end %>-->
+<!--
+  <div>
+    <%#= form.label :name, style: "display: block" %>-->
+    <%#= form.text_field :name %>
+<!--  </div>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
+    <%#= form.label :expiration_date, style: "display: block" %>-->
+    <%#= form.datetime_field :expiration_date %>
+<!--  </div>
 
   <div>
-    <%= form.label :expiration_date, style: "display: block" %>
-    <%= form.datetime_field :expiration_date %>
-  </div>
+    <%#= form.label :dosage, style: "display: block" %>-->
+    <%#= form.text_field :dosage %>
+<!--  </div>
 
   <div>
-    <%= form.label :dosage, style: "display: block" %>
-    <%= form.text_field :dosage %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
+    <%#= form.label :description, style: "display: block" %>-->
+    <%#= form.text_field :description %>
+<!--  </div>
 
   <div class="mt-2">
-    <%= form.submit class: 'btn btn-dark custom_button_color' %>
+    <%#= form.submit class: 'btn btn-dark custom_button_color' %>-->
+<!--  </div>-->
+<%# end %>
+<!---->
+
+<div class="container mt-5">
+  <div class="card shadow-sm" style="width: 25rem;">
+    <div class="card-header text-white custom_button_color">
+      <h3 class="card-title mb-0"><%= medication.persisted? ? "Edit Medication" : "New Medication" %></h3>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: medication) do |form| %>
+        <% if medication.errors.any? %>
+          <div class="alert alert-danger">
+            <h4 class="alert-heading"><%= pluralize(medication.errors.count, "error") %> prohibited this medication from being saved:</h4>
+            <ul>
+              <% medication.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :expiration_date, class: "form-label" %>
+          <%= form.datetime_field :expiration_date, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :dosage, class: "form-label" %>
+          <%= form.text_field :dosage, class: "form-control" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :description, class: "form-label" %>
+          <%= form.text_field :description, class: "form-control" %>
+        </div>
+
+        <div class="mt-3">
+          <%= form.submit "Save Medication", class: 'btn btn-dark custom_button_color w-100' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="card-footer">
+      <%= link_to medications_path, class: 'btn btn-secondary btn-sm' do %>
+        <i class="bi bi-arrow-left"></i> Back to Medications
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
