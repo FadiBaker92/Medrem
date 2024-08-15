@@ -1,5 +1,4 @@
 # MedRem
-
 ## Description 📖
 
 The Medication Reminder App is a web application built with Ruby on Rails designed to help users manage their medications and set reminders. The app allows users to add medications, associate prescriptions with them, and set reminders for taking the medications. The reminders are displayed on a calendar view, making it easy for users to keep track of their medication schedule.
@@ -52,4 +51,3 @@ If you have any questions or need further assistance, feel free to contact the p
 ### Fadi Baker
 ### Email: Bakerfadi92@gmail.com
 ### GitHub: bakerfadi92
-
