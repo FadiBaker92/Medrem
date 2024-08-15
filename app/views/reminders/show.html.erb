@@ -1,9 +1,26 @@
-
-<%= render @reminder %>
-
-<div>
-  <%= link_to "Edit This Reminder", edit_reminder_path(@reminder) %> |
-  <%= link_to "Delete This Reminder", @reminder, method: :delete %>
+<div class="container mt-5">
+  <div class="card shadow-sm" style="width: 25rem;">
+    <div class="card-header text-white d-flex justify-content-between custom_button_color">
+      <h3 class="card-title mb-0">Reminder#<%= @reminder.id %></h3>
+      <div>
+        <%= link_to edit_reminder_path(@reminder), class: 'btn btn-warning btn-sm' do %>
+          <i class="bi bi-pencil-square"></i>
+        <% end %>
+        <%= link_to @reminder, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' do %>
+          <i class="bi bi-trash"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="card-body">
+        <h4 class="card-subtitle mb-3"><strong>Info</strong></h4>
+        <div class="mb-2"><strong>Prescription#:</strong> <%= @reminder.prescription_id %></div>
+        <div class="mb-2"><strong>Message:</strong> <%= @reminder.message %></div>
+        <div class="mb-2"><strong>Remind at:</strong> <%= @reminder.sent_at.strftime("%B %d, %Y") %></div>
+    </div>
+    <div class="card-footer">
+      <%= link_to reminders_path, class: 'btn btn-secondary btn-sm' do %>
+        <i class="bi bi-arrow-left"></i> Back to Reminders
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "Back To Medication", medication_path(@medication.id) %>
