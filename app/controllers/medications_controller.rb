@@ -9,6 +9,7 @@ class MedicationsController < ApplicationController
 
   # GET /medications/1 or /medications/1.json
   def show
+    # This logic can probably be put inside a method and called wherever needed so you dont repeat yourself
     unless @medication.prescriptions.where(user_id: current_user.id).exists?
       redirect_to medications_path, alert: "You are not authorized to view this medication."
     end
@@ -29,7 +30,7 @@ class MedicationsController < ApplicationController
   # POST /medications or /medications.json
   def create
     @medication = Medication.new(medication_params)
-    
+
     respond_to do |format|
       if @medication.save
         Prescription.create(
