@@ -18,6 +18,7 @@
         <% @medication.prescriptions.each do |prescription| %>
           <div class="mb-3">
             <div class="mb-2"><strong>Dosage:</strong> <%= prescription.dosage %></div>
+            <%# if a user does not select an expiration date, then it will try to call method on Nil class and throws an error. %>
             <div class="mb-2"><strong>Expires on:</strong> <%= prescription.expiration_date.strftime("%B %d, %Y") %></div>
             <div><%= link_to 'Set a Reminder', new_medication_reminder_path(@medication), class: 'btn btn-dark btn-bg custom_button_color' %></div>
           </div>
