@@ -9,9 +9,6 @@ class MedicationsController < ApplicationController
 
   # GET /medications/1 or /medications/1.json
   def show
-    unless @medication.prescriptions.where(user_id: current_user.id).exists?
-      redirect_to medications_path, alert: "You are not authorized to view this medication."
-    end
   end
 
   # GET /medications/new
@@ -21,9 +18,6 @@ class MedicationsController < ApplicationController
 
   # GET /medications/1/edit
   def edit
-    unless @medication.prescriptions.where(user_id: current_user.id).exists?
-      redirect_to medications_path, alert: "You are not authorized to edit this medication."
-    end
   end
 
   # POST /medications or /medications.json
